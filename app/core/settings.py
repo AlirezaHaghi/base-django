@@ -28,6 +28,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    "debug_toolbar",
 ]
 
 LOCAL_APPS = [
@@ -46,6 +47,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
 ROOT_URLCONF = "core.urls"
 
@@ -178,3 +182,32 @@ LOGGING = {
         },
     },
 }
+
+# Django Debug Toolbar configuration
+if DEBUG:   
+    INTERNAL_IPS = [
+        "127.0.0.1",
+        "localhost",
+    ]
+    # Configuration for Django Debug Toolbar
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": lambda request: DEBUG,
+        "SHOW_COLLAPSED": True,
+        "DISABLE_PANELS": [],
+        "SHOW_TEMPLATE_CONTEXT": True,
+    }
+    
+    DEBUG_TOOLBAR_PANELS = [
+        "debug_toolbar.panels.versions.VersionsPanel",
+        "debug_toolbar.panels.timer.TimerPanel",
+        "debug_toolbar.panels.settings.SettingsPanel",
+        "debug_toolbar.panels.headers.HeadersPanel",
+        "debug_toolbar.panels.request.RequestPanel",
+        "debug_toolbar.panels.sql.SQLPanel",
+        "debug_toolbar.panels.staticfiles.StaticFilesPanel",
+        "debug_toolbar.panels.templates.TemplatesPanel",
+        "debug_toolbar.panels.cache.CachePanel",
+        "debug_toolbar.panels.signals.SignalsPanel",
+        "debug_toolbar.panels.redirects.RedirectsPanel",
+        "debug_toolbar.panels.profiling.ProfilingPanel",
+    ]
