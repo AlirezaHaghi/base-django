@@ -53,6 +53,8 @@ if DEBUG:
 
 ROOT_URLCONF = "core.urls"
 
+APPEND_SLASH=False
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
