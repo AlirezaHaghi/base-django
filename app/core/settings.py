@@ -42,7 +42,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -52,6 +52,8 @@ if DEBUG:
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
 ROOT_URLCONF = "core.urls"
+
+APPEND_SLASH=False
 
 TEMPLATES = [
     {
@@ -107,12 +109,11 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = "static/"
-STATIC_ROOT = PROJECT_ROOT / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = PROJECT_ROOT / "assets" / "static"
 
 # Media files
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = PROJECT_ROOT / "assets" / "media"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
