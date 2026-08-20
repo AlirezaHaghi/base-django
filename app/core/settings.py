@@ -13,7 +13,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 # Security settings
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me-in-production")
 DEBUG = True if os.getenv("DEBUG", "False").lower() == "false" else True
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
 # Application definition
 DJANGO_APPS = [
